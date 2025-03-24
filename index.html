@@ -4,13 +4,91 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <title>Isaac VR scene</title>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+  <script src="script.js"></script>
 </head>
 
 <body>
-  Hello world
-  <script src="script.js"></script>
+  <a-scene>
+    <a-assets>
+      <!-- Video -->
+      <video id="videoclip" loop="true" src="tvAssets/tv_video.mp4" crossorigin="anonymous" preload="auto"></video>
+      <img id="play" src="tvAssets/btnPlay.png" preload="auto">
+      <img id="pause" src="tvAssets/btnPause.png" preload="auto">
+      <img id="tv_background" src="tvAssets/tv_background.jpg" preload="auto">
+    </a-assets>
+
+
+    <a-entity environment="preset: tron; dressingAmount:1;skyColor:#E00074"></a-entity>
+    <!-- Start of house -->
+    <a-cylinder id="floor" position="0 0 0" radius="7.5" color="black" height="0.1"></a-cylinder>
+    <a-box id="box1" position="0  1.473  4.907" rotation="0  0  0" scale="10  3  0.2" color="white"></a-box>
+    <a-box id="box1" position="0  1.473 -4.907" rotation="0  0  0" scale="10  3  0.2" color="white"></a-box>
+    <a-box id="box1" position="5.049  1.454  -0.008" rotation="0  -90  0" scale="10  3  0.2" color="white"></a-box>
+    <a-box id="box1" position="-5.049  1.454  -0.008" rotation="0  -90  0" scale="10  3  0.2" color="white"></a-box>
+    <a-box id="wall1Taha_Hinengaro" position="0.022 1.396 4.608" scale="10 3 0.2" rotation="0 0 0"
+      src="images/my_sky.jpg"></a-box>
+    <a-cylinder id="triangle_back" segments-radial="3" position="0  3.874 4.907" rotation="-90  0  0"
+      scale="5.774  0.2  1.8" color="black"></a-cylinder>
+    <a-cylinder id="triangle_front" segments-radial="3" position="0  3.874 -4.907" rotation="-90  0  0"
+      scale="5.774  0.2  1.8" color="black"></a-cylinder>
+    <a-box id="roof_right" position="2.580  4.328  0" rotation="28.433  90  0" scale="10.931 0.20  6.110"
+      color="black"></a-box>
+    <a-box id="roof_left" position="-2.599  4.3321  -0.017" rotation="28.433 -90  0" scale="10.931 0.20  6.130"
+      color="black"></a-box>
+    <!-- art on walls-->
+    <a-plane id="art1" src="images/football.jpg" scale="2 2 0.05" rotation="0 0 0"
+      position="-0.162 1.934 -4.792"></a-plane>
+    <a-plane id="art2" src="images/abstract.jpg" scale="2 2 0.05" rotation="0 0 0"
+      position="-2.277 1.934 -4.792"></a-plane>
+    <a-plane id="art3" src="images/painting.jpg" scale="2 2 0.05" rotation="0 0 0"
+      position="1.990 1.934 -4.792"></a-plane>
+    <a-plane id="art4" src="images/rat.jpg" scale="1 1 0.025" rotation="0 0 0" position="4.116 0.571 -4.708"></a-plane>
+    <!-- add a comment here stating this is the  start of what ever ht ecode below is -->
+    <a-obj-model id="3dModel1" src="images/tinker.obj" mtl="images/obj.mtl" position="4.027 -0.105 -3.745"
+      rotation="-90 0 0" scale=".02 .02 .02"></a-obj-model>
+
+    <a-entity>
+      <!-- Srt of tv -->
+      <a-video src="#videoclip" position="-3.893 1.6 0" rotation="0 90 0" width="2" height="1.125"></a-video>
+      <!-- TV background -->
+      <a-plane id="videoControls" position="-3.893 0.854 0" scale="2 0.386 1.714" rotation="0 90 0" opacity="1"
+        src="tvAssets/tv_background.jpg">
+        <!-- Play button -->
+        <a-plane id="vidplaybox" src="#play" scale="0.122 0.678 0.122" position="-0.350 0 .01" shader="flat"
+          transparent="true" videoplayer></a-plane>
+        <!-- Stop button -->
+        <a-plane id="vidpausebox" src="#pause" scale="0.122 0.678 0.122" position="0.350 0 .01" shader="flat"
+          transparent="true" videopauser></a-plane>
+      </a-plane>
+    </a-entity>
+    <a-entity cursor="rayOrigin: mouse"></a-entity>
+
+    <!-- Movement-->
+    <!-- Camera + controllers rig -->
+    <a-entity id="rig">
+      <a-camera position="0 1.6 0"></a-camera>
+      <!-- left hand controller with laser pointer -->
+      <a-entity laser-controls="hand: left"></a-entity>
+      <a-entity oculus-touch-controls="hand: right" oculus-thumbstick-controls></a-entity>
+
+      <a-obj-model id="3dModel2" src="images/tinker2.obj" mtl="images/obj2.mtl" position="-1.904 0 -5.772"
+        rotation="-90 0 0" scale="0.08 0.08 0.08"></a-obj-model2>
+
+
+      <a-obj-model id="3dModel" src="tinker/psg.obj" mtl="tinker/otherPsg.mtl" position="21.659 -72.3 0.440" rotation="0 0 0" scale="0.4 0.4 0.4"></a-obj-model>
+
+      <a-obj-model id="3dModel" src="tinker/PS5.obj" mtl="tinker/PS5.mtl" position="-28.979 -55.313 8.174" rotation="0 0 90" scale="0.05 0.05 0.05"></a-obj-model>
+
+       <a-obj-model id="3dModel" src="tinker/coffee.obj" mtl="tinker/coffee.mtl" position="-31.397 -81.239 -2.863" rotation="0 0 0" scale="0.8 0.8 0.8"></a-obj-model>
+
+       <a-obj-model id="3dModel" src="tinker/mbappe.obj" mtl="tinker/mbappe.mtl" position="-3.980 -128.15 20.007" rotation="-90 0 0" scale="0.3 0.3 0.3"></a-obj-model>
+      
+    </a-entity>
+
+  </a-scene>
 </body>
 
 </html>
